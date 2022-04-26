@@ -15,11 +15,13 @@ const BlogsSchema = new mongoose.Schema({
      category :{ type:String , required: true },
      subcategory:{type:[String] },
      isDeleted:{type:Boolean , default:false},
-     publishedAt:{}
+    // publishedAt:{}
+    //deletedAt:
+    isPublished:{type:Boolean , default:false},
 
 
 
 }, { timestamps: true });
 
 
-module.exports= mongoose.model('auther' , autherSchema )
+module.exports= mongoose.model('Blogs' , BlogsSchema )
