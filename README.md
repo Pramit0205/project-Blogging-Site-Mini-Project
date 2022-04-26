@@ -1,6 +1,6 @@
 # Project_Work
 All the Projects Work Will be saved Here
-Blogging Site Mini Project by (Pratik Lokhande ,Amit Kumar , Pramit Chaudhary , rohan Jagadale
+Blogging Site Mini Project by ( Pratik Lokhande ,Amit Kumar , Pramit Chaudhary , rohan Jagadale )
 
 
 
