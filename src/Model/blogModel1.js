@@ -38,6 +38,6 @@ const blogSchema = new mongoose.Schema({
     deletedAt: {
         type: Date
     }
-},{timestamps:true})
+}, { timestamps: true })
 
-module.exports=mongoose.model("Blog",blogSchema);
+module.exports = mongoose.model("Blog", blogSchema);

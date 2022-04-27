@@ -2,7 +2,11 @@
 const autherModel = require("../Model/authorModel")
 const blogsModel = require("../Model/blogModel1")
 
-//### POST /blogs
+
+
+//2.### POST /blogs
+
+
 const createBlog = async function (req, res) {
     try {
         let data = req.body
@@ -23,7 +27,7 @@ const createBlog = async function (req, res) {
 
 
 
-//### GET /blogs
+//3.### GET /blogs
 
 const getBlog = async function (req, res) {
     try {
@@ -44,32 +48,42 @@ const getBlog = async function (req, res) {
     }
 }
 
-//### PUT /blogs/:blogId
 
-const updateblog= async function(req ,res){
-    try{
-   
+
+
+
+//4.### PUT /blogs/:blogId
+
+
+
+const updateblog = async function (req, res) {
+    try {
+
         let blogId = req.params.blogId;
         let blog = await blogsModel.findById(blogId);
         //Return an error if no user with the given id exists in the db
         if (!blog) {
-          return res.status(400).send("No such blog exists");
+            return res.status(400).send("No such blog exists");
         }
-      
+
         let blogData = req.body;
         if (blogData.isPublished == true)
-        blogData["publishedAt"] = new Date();
-        let updateblog = await blogsModel.findOneAndUpdate({ _id: blogId }, blogData, {new: true});
-        res.status(201).send({ status:true, data: updateblog });
-    }catch(err) {
-        console.log("this is the error:",err.message)
-        res.status(500).send({msg:"error",error:err.message})
+            blogData["publishedAt"] = new Date();
+        let updateblog = await blogsModel.findOneAndUpdate({ _id: blogId }, blogData, { new: true });
+        res.status(201).send({ status: true, data: updateblog });
+    } catch (err) {
+        console.log("this is the error:", err.message)
+        res.status(500).send({ msg: "error", error: err.message })
     }
 
 }
 
 
-//### DELETE /blogs/:blogId
+
+
+
+
+//5.### DELETE /blogs/:blogId
 
 
 const deleteBlog = async function (req, res) {
@@ -89,7 +103,10 @@ const deleteBlog = async function (req, res) {
 }
 
 
-//### DELETE /blogs?queryParams
+
+
+
+//6.### DELETE /blogs?queryParams
 
 const deleteBlogBy = async function (req, res) {
     try {
@@ -108,8 +125,8 @@ const deleteBlogBy = async function (req, res) {
 }
 
 
-module.exports.createBlog=createBlog
-module.exports.getBlog=getBlog 
-module.exports.updateblog=updateblog
-module.exports.deleteBlog=deleteBlog
-module.exports.deleteBlogBy=deleteBlogBy
+module.exports.createBlog = createBlog
+module.exports.getBlog = getBlog
+module.exports.updateblog = updateblog
+module.exports.deleteBlog = deleteBlog
+module.exports.deleteBlogBy = deleteBlogBy
