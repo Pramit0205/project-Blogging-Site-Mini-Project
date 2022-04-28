@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router()
-const AutherController = require("../controllers/autherController")
+const AuthorController = require("../controllers/authorController")
 
 const blogsController = require("../controllers/blogController")
+
+const middleware= require("../middleware/middleware")
 
 // const BlogsController= require("../controllers/blogsController")
 
@@ -10,19 +12,21 @@ router.get("/test-me", function (req, res) {
     res.send("My first ever api!")
 })
 
-router.post('/createAuther', AutherController.createAuther)
+router.post('/createAuther', AuthorController.createAuther)
 
 router.post("/createBlog", blogsController.createBlog)
 
-router.get('/getBlog', blogsController.getBlog)
+router.post("/loginUser",AuthorController.loginUser)
 
-router.put('/blogs/:blogId', blogsController.updateblog)
+router.get('/getBlog',middleware.validateToken,blogsController.getBlog)
 
-router.delete('/blogs/:blogId', blogsController.deleteBlog)
+router.put('/blogs/:blogId',middleware.validateToken, blogsController.updateblog)
 
-router.delete('/blogs', blogsController.deleteBlogBy)
+router.delete('/blogs/:blogId',middleware.validateToken, blogsController.deleteBlog)
 
-// router.delete('/blogsdelete',blogsController.blogsdelete)
+router.delete('/blogs', middleware.validateToken,blogsController.deleteBlogBy)
+
+
 
 
 module.exports = router;
