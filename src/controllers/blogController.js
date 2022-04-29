@@ -29,22 +29,34 @@ const createBlog = async function (req, res) {
 
 //3.### GET /blogs
 
-const getBlog = async function (req, res) {
-    try {
-        let query = req.query
-        let mainQuery = [{ authorId: query.authorId }, { category: query.category }, { tags: query.tags }, { subcategory: query.subcategory }]
-        let obj = { isDeleted: false, isPublished: true, $or: mainQuery }
-        let getData = await blogsModel.find(obj).collation({ locale: "en", strength: 2 })
+const getBlog = async function(req,res){
+    try{
+       // let id = req.query.authorId;
+        //let category = req.query.category;
+        //let tag = req.query.tags;
+        //let subcat = req.query.subcategory;
 
-        if (!(query.authorId || query.category || query.tags || query.subcategory))
-            getData = await blogsModel.find({ isDeleted: false, isPublished: true })
-        if (getData.length === 0)
-            return res.status(404).send({ status: false, msg: "Blogs not present" })
-        
-        res.status(200).send({ status: true, msg: getData })
+        //let filterData = await blogsModel.find({$or:[
+          //  {isDeleted:false,isPublished:true}
+            //,{$and:[{authorId : id},{category : category},{subcategory : {$in : [subcat]}},{tags : {$in : [tag]}}]}
+        //]
+
+    //});
+      let body =req.query
+      body.isDeleted=false 
+      body.isPublished=true
+      let result=await blogsModel.find(body)
+      if(!result){
+          res.status(404).send({msg:"not found"})
+          return ;
+      }
+      res.status(200).send({msg:"found",data:result})
+    
+
+      
     }
-    catch (error) {
-        res.status(500).send({ status: false, msg: error.message })
+    catch(err){
+        res.status(500).send({ msg: "Error", error: err.message });
     }
 }
 
