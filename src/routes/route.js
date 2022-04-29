@@ -20,9 +20,9 @@ router.post("/loginUser",AuthorController.loginUser)
 
 router.get('/getBlog',middleware.validateToken,blogsController.getBlog)
 
-router.put('/blogs/:blogId',middleware.validateToken, blogsController.updateblog)
+router.put('/blogs/:blogId',middleware.validateToken,blogsController.updateblog)
 
-router.delete('/blogs/:blogId',middleware.validateToken, blogsController.deleteBlog)
+router.delete('/blogs/:blogId',middleware.validateToken,blogsController.deleteBlog)
 
 router.delete('/blogs', middleware.validateToken,blogsController.deleteBlogBy)
 

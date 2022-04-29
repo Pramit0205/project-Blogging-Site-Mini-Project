@@ -40,7 +40,7 @@ const getBlog = async function (req, res) {
             getData = await blogsModel.find({ isDeleted: false, isPublished: true })
         if (getData.length === 0)
             return res.status(404).send({ status: false, msg: "Blogs not present" })
-
+        
         res.status(200).send({ status: true, msg: getData })
     }
     catch (error) {
