@@ -10,11 +10,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-mongoose.connect("mongodb+srv://blogging:eRGtwmBPsExHSfUI@cluster0.dnqcr.mongodb.net/pramitDB?retryWrites=true&w=majority", {
+mongoose.connect("mongodb+srv://blogging:eRGtwmBPsExHSfUI@cluster0.dnqcr.mongodb.net/group47Database?retryWrites=true&w=majority", {
     useNewUrlParser: true
 })
-.then( () => console.log("MongoDb is connected"))
-.catch ( err => console.log(err) )
+    .then(() => console.log("MongoDb is connected"))
+    .catch(err => console.log(err))
 
 
 

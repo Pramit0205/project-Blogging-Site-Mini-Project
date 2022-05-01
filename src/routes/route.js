@@ -4,7 +4,7 @@ const AuthorController = require("../controllers/authorController")
 
 const blogsController = require("../controllers/blogController")
 
-const middleware= require("../middleware/middleware")
+const middleware = require("../middleware/middleware")
 
 // const BlogsController= require("../controllers/blogsController")
 
@@ -14,17 +14,17 @@ router.get("/test-me", function (req, res) {
 
 router.post('/createAuther', AuthorController.createAuther)
 
-router.post("/createBlog", blogsController.createBlog)
+router.post("/createBlog", middleware.validateToken, blogsController.createBlog)
 
-router.post("/loginUser",AuthorController.loginUser)
+router.post("/loginUser", AuthorController.loginUser)
 
-router.get('/getBlog',blogsController.getBlog)
+router.get('/getBlog', blogsController.getBlog)
 
-router.put('/blogs/:blogId',middleware.validateToken,blogsController.updateblog)
+router.put('/blogs/:blogId', middleware.validateToken, blogsController.updateblog)
 
-router.delete('/blogs/:blogId',middleware.validateToken,blogsController.deleteBlog)
+router.delete('/blogs/:blogId', middleware.validateToken, blogsController.deleteBlog)
 
-router.delete('/blogs', middleware.validateToken,blogsController.deleteBlogBy)
+router.delete('/blogs', middleware.validateToken, blogsController.deleteBlogBy)
 
 
 
