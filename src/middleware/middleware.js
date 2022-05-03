@@ -14,12 +14,7 @@ const validateToken = function (req, res, next) {
       return res.status(403).send({ status: false, msg: "token is invalid" });
 
 
-    let authorlogged = decodedToken.autherId;
-    console.log(authorlogged)
-    let autherDetails = req.query.authorId;
-    console.log(autherDetails)
-    if (autherDetails !== authorlogged)
-      return res.status(404).send({ status: false, msg: "No such user exists" });
+    req.authorId=decodedToken.authorId
     next();
 
   } catch (err) {

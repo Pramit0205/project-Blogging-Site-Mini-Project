@@ -16,7 +16,7 @@ router.post("/loginUser", AuthorController.loginAuthor)
 
 router.post("/createBlog", middleware.validateToken, blogsController.createBlog)
 
-router.get('/getBlog', middleware.validateToken, blogsController.getBlog)
+router.get('/getBlog', middleware.validateToken, blogsController.listBlog)
 
 router.put('/blogs/:blogId', middleware.validateToken, blogsController.updateblog)
 

@@ -15,8 +15,15 @@ const autherSchema = new mongoose.Schema({
 
     title: { type: String, required:'title is required', enum: ["Mr", "Mrs", "Miss"] },
 
-    email: { type: String, required:'email is required',lowercase:true, unique: true,trim:true,
-     match: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g },
+    email: { 
+        type: String, required:'email is required',lowercase:true, unique: true,trim:true,
+            validate:{
+                validator:function(email){
+                    return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+                },msg:'please fill a valid email address',isAsync:false
+            }
+
+            },
 
     password: { type: String, required:'password is required',trim:true }
 

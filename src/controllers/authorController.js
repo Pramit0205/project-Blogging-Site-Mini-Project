@@ -32,6 +32,10 @@ const createAuthor = async function (req, res) {
 
     if (!isValid(email)) return res.status(400).send({ status: false, msg: 'email is required' })
 
+    if(!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))){
+      return res.status(400).send({ status: false, msg: 'email should be avalid email address' })
+    }
+
     if (!isValid(password)) return res.status(400).send({ status: false, msg: 'password is required' })
 
     const isEmailuse = await authorModel.findOne({ email });
@@ -54,6 +58,10 @@ const loginAuthor = async function (req, res) {
 
     const { email, password } = requestBody;
     if (!isValid(email)) return res.status(400).send({ status: false, msg: 'email is required' })
+
+    if(!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))){
+      return res.status(400).send({ status: false, msg: 'email should be avalid email address' })
+    }
 
     if (!isValid(password)) return res.status(400).send({ status: false, msg: 'password is required' })
 
