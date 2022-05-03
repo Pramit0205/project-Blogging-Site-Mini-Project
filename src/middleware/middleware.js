@@ -6,12 +6,12 @@ const validateToken = function (req, res, next) {
   try {
     let token = req.headers["x-api-key"];
 
-    if (!token) return res.send({ status: false, msg: "token must be present" });
+    if (!token) return res.status(403).send({ status: false, msg: "token must be present" });
 
     let decodedToken = jwt.verify(token, "functionup-uranium");
     console.log(decodedToken)
     if (!decodedToken)
-      return res.status(400).send({ status: false, msg: "token is invalid" });
+      return res.status(403).send({ status: false, msg: "token is invalid" });
 
 
     let authorlogged = decodedToken.autherId;
