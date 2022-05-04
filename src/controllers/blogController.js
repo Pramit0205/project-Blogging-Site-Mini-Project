@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
-const ObjectId = mongoose.Schema.Types.ObjectId 
+
 const autherModel = require("../Model/authorModel")
-//const blogModel = require("../Model/blogModel")
+
 const blogsModel = require("../Model/blogModel")
 
 const isValid = function (value) {
