@@ -9,14 +9,14 @@ const mongoose = require('mongoose');
 
 const autherSchema = new mongoose.Schema({
 
-    fName: { type: String, required:'fname is required',trim:true},
+    fName: { type: String, required:true,trim:true},
 
-    lName: { type: String, required:'lname is required',trim:true },
+    lName: { type: String, required:true,trim:true },
 
-    title: { type: String, required:'title is required', enum: ["Mr", "Mrs", "Miss"] },
+    title: { type: String, required:true, enum: ["Mr", "Mrs", "Miss"] },
 
     email: { 
-        type: String, required:'email is required',lowercase:true, unique: true,trim:true,
+        type: String, required:true,lowercase:true, unique: true,trim:true,
             validate:{
                 validator:function(email){
                     return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
@@ -25,7 +25,7 @@ const autherSchema = new mongoose.Schema({
 
             },
 
-    password: { type: String, required:'password is required',trim:true }
+    password: { type: String, required:true,trim:true }
 
 }, { timestamps: true });
 

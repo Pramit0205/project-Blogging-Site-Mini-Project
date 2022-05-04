@@ -9,7 +9,7 @@ const middleware = require("../middleware/middleware")
 
 
 
-router.post('/createAuther', AuthorController.createAuthor)
+router.post('/createAuthor', AuthorController.createAuthor)
 
 router.post("/loginUser", AuthorController.loginAuthor)
 
